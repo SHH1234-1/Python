@@ -1,0 +1,26 @@
+import sys
+n = int(sys.stdin.readline())  # 명령의 수
+
+stack=[] #명령을 담기위한 stack list
+for i in range(n): #명령의 수 만큼 반복문
+    command = sys.stdin.readline().split() #한줄을 불러와서 split한다음 command list에 넣어줌
+
+    if command[0]=='push':  #명령어가 push라면
+        stack.append(command[1]) #정수x를 스택에 넣음 
+    elif command[0]=='pop': #명령어가 pop라면
+        if len(stack)==0: # 스택에 들어있는 정수가 없는 경우에는
+            print(-1) #-1을 출력
+        else:
+            print(stack.pop()) # 스택에서 가장 위에 있는 정수를 뺀다
+    elif command[0] == 'size': #명령어가 size라면
+        print(len(stack)) #스택에 들어있는 정수의 개수를 출력한다
+    elif command[0] == 'empty': #명령어가 empty라면
+        if len(stack)==0: #스택이 비어있으면 
+            print(1) # 1
+        else:
+            print(0) # 아니면 0
+    elif command[0] == 'top': #명령어가 top이라면
+        if len(stack)==0: #만약 스택에 들어있는 정수가 없는 경우에는
+            print(-1) # -1을 출력한다
+        else:
+            print(stack[-1]) #스택의 가장 위에 있는 정수를 출력
