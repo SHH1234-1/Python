@@ -1,0 +1,42 @@
+from collections import deque #deque import
+import sys
+
+d = deque() #정수를 저장하는 덱(Deque)
+n = int(input()) #첫째 줄에 주어지는 명령의 수 N
+
+for i in range(n): #명령의 수 N만큼 반복
+    command = sys.stdin.readline().split() #한줄을 읽고 split()으로 나눠서 command로 넣어줌
+
+    if command[0] == "push_front": #push_front 명령어가 입력될 경우
+        d.appendleft(command[1]) # X를 덱의 앞에 넣는다 deque의 왼쪽 끝에 x를 삽입한다
+    elif command[0] == "push_back": ##push_back 명령어가 입력될 경우
+        d.append(command[1]) #정수 X를 덱의 뒤에 넣는다 deque의 오른쪽 끝에 x를 삽입한다
+    elif command[0] == "pop_front": #pop_front 명령어가 입력될 경우
+        if d:
+            print(d[0]) #   그 수를 출력한다
+            d.popleft() # 덱의 가장 앞에 있는 수를 빼고
+        else: # 덱에 들어있는 정수가 없는 경우
+            print("-1") # -1을 출력한다
+    elif command[0] == "pop_back": #pop_back명령어
+        if d:
+            print(d[len(d) - 1])    #가장 뒤에 있는 수를 출력
+            d.pop() #가장 뒤에 있는 수를 빼고
+        else:
+            print("-1") # 덱에 들어있는 정수가 없는 경우에는 -1을 출력
+    elif command[0] == "size": #size 명령어가 들어올 경우
+        print(len(d)) # 덱에 들어있는 정수의 개수를 출력한다.
+    elif command[0] == "empty": #empty 명령어
+        if d: 
+            print("0") #덱이 비어있지 않으면 0
+        else:
+            print("1") # 덱이 비어있으면 1
+    elif command[0] == "front": #front 명령어
+        if d:
+            print(d[0]) #덱의 가장 앞에 있는 정수를 출력한다
+        else:
+            print("-1") #만약 덱에 들어있는 정수가 없는 경우에는 -1을 출력
+    elif command[0] == "back": #명령어 back
+        if d:
+            print(d[len(d) - 1]) # 덱의 가장 뒤에 있는 정수를 출력
+        else:
+            print("-1") #정수가 없는 경우에는 -1
