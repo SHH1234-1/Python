@@ -1,0 +1,23 @@
+import sys
+S = sys.stdin.readline().strip() + ' ' # 마지막에 공백추가
+stack = [] # 저장해줄 스택
+result = '' # 결과물 출력
+cnt = 0 # 괄호 안에 있는지 여부
+for i in S : # 받은 문자열에서 문자를 하나씩 꺼내서
+    if i == '<' : # <를 만나면
+        cnt = 1 # 지금 괄호 안에 있음 표시
+        for _ in range(len(stack)): #괄호 만나기 이전 stack안에 있는 값을
+            result += stack.pop() #pop시키고 result에 저장
+    stack.append(i) #입력단어를 stack에 저장
+    
+    if i == '>' : # >를 만나면
+        cnt = 0 # 지금 괄호 빠져 나왔음 표시
+        for _ in range(len(stack)): # 괄호 안에 있는 문자들은 뒤집지 않고 더하기
+            result += stack.pop(0)
+
+    if i == ' ' and cnt == 0: # 공백을 만나고 괄호 밖에 있다면
+        stack.pop() # 들어간 공백 뺴주고
+        for _ in range(len(stack)): # 뒤집어서 더해!
+            result += stack.pop()
+        result += ' ' # 마지막에 공백 살려주기
+print(result)
