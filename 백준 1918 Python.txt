@@ -1,0 +1,24 @@
+strn = list(input())  #첫째 줄에 중위 표기식이 주어진다.
+stack=[] #표기식을 저장할 stack 
+res='' #문자열 초기화
+for s in strn: 
+    if s.isalpha(): #알파벳이라면 true 알파벳이 아닌 다른것이라면 false를 반환 
+        res+=s
+    else:  
+        if s == '(': #첫번째 우선 표기식 ()
+            stack.append(s) #stack에 넣기
+        elif s == '*' or s == '/': #두번째 우선 표기식
+            while stack and (stack[-1] == '*' or stack[-1] =='/'): #stack이 있고 stack에 while문으로 돌면서 * / 연산자가 있는만큼 반복
+                res += stack.pop() # 연산자를 문자열에 더하기
+            stack.append(s) #없을경우 stack에 append
+        elif s == '+' or s == '-': #세번째 우선 표기식
+            while stack and stack[-1] != '(': 
+                res+= stack.pop()
+            stack.append(s) # 없을경우 stack에 appded
+        elif s == ')':
+            while stack and stack[-1] != '(': #(연산자가 나올때까지
+                res += stack.pop() # pop해서 문자열 추가
+            stack.pop() #) pop시켜줌
+while stack :
+    res+=stack.pop() #미처 더해주지 못한 연산자 모두 문자열에 더해주기
+print(res)
