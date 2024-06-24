@@ -1,0 +1,9 @@
+s = str(input()) #첫째 줄에 문자열 S가 주어진다. 
+s_list = [] # list 생성
+
+for _ in s: #s의 문자열 길이만큼 반복
+    s_list.append(s) #s문자를 list에 append
+    s = s[1:] #1번째 indxe의 문자부터 끝까지 s에 저장
+
+for i in sorted(s_list): # 알파벳순서로 정렬
+    print(i) # 출력
