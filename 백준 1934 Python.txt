@@ -1,0 +1,9 @@
+T = int(input())
+for _ in range(T):
+    A, B = map(int, input().split())
+    result = A*B
+
+    while B>0:
+        A,B = B, A%B  //유클리드 호제법 
+
+    print(result//A)
